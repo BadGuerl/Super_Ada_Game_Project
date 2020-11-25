@@ -10,7 +10,11 @@
         this.drawIntervalId = undefined;
 
         this.background = new Background(this.ctx);
-        this.ada = new Ada(this.ctx, 15, 550)
+        this.ada = new Ada(this.ctx, 15, 550);
+
+        this.weapons = [
+            new Weapon(this.ctx, 100, 100)
+        ];
     }
 
     onKeyEvent(event) {
@@ -41,6 +45,8 @@
     draw() {
         this.background.draw();
         this.ada.draw();
+
+        this.weapons.forEach(weapon => weapon.draw());
     }
 
     move() {
