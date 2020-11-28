@@ -13,7 +13,7 @@
         this.ada = new Ada(this.ctx, 15, 550);
 
         this.weapons = [
-            new Weapon(this.ctx, 100, 100)
+            new Weapon(this.ctx, 150, 600)
         ];
     }
 
@@ -52,6 +52,7 @@
     move() {
         if (this.ada.x >= this.ada.maxX) {
             this.background.move();
+            this.weapons.forEach(weapon => weapon.move());
         } 
         this.ada.move();
     }

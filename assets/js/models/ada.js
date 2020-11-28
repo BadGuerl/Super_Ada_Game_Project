@@ -9,7 +9,8 @@ class Ada {
 
         this.y = y;
         this.vy = 0;
-        this.maxY = this.y;
+        this.maxY = this.ctx.canvas.height - 140;
+        this.minY = Math.floor(this.ctx.canvas.height / 1.7);
 
         this.width = 0;
         this.height = 0;

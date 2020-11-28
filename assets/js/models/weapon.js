@@ -29,12 +29,24 @@ class Weapon {
                 this.sprite.verticalFrameIndex * this.sprite.frameHeight,
                 this.sprite.frameWhith,
                 this.sprite.frameHeight,
-                this.sprite,
                 this.x,
                 this.y,
                 this.width,
                 this.height
             )
+        }
+    }
+
+    animate () {
+        if (this.drawCount % MOVEMENT_FRAMES === 0) {
+            this.sprite.horizontalFrameIndex = (this.sprite.horizontalFrameIndex + 1) % this.sprite.horizontalFrames;
+            this.drawCount = 0;
+        }
+    }
+
+    move () {
+        if (this.movements.left) {
+            this.x -= SPEED;
         }
     }
 }
