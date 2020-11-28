@@ -14,6 +14,7 @@
 
         this.weapons = [
             new Weapon(this.ctx, this.ada.x + 800, this.ada.y + 50)
+
         ];
     }
 

@@ -3,7 +3,7 @@ class Ada {
     constructor(ctx, x, y) {
         this.ctx = ctx;
         this.x = x;
-        this.maxX = Math.floor(this.ctx.canvas.width / 2);
+        this.maxX = this.ctx.canvas.width / 2;
         this.minX = 0;
         this.vx = 0;
 
@@ -22,6 +22,7 @@ class Ada {
         this.sprite.verticalFrames = 5;
         this.sprite.verticalFrameIndex = 0;
         this.sprite.horizontalFrameIndex = 0;
+        this.sprite.drawCount = 0;
 
         this.sprite.onload = () => {
             
@@ -32,15 +33,13 @@ class Ada {
             this.height = this.sprite.frameHeight;
         }
 
-        this.movement = {
+        this.movements = {
             right: false,
             left: false,
             up: false,
             down: false,
             defending: false       
         }
-
-        this.drawCount = 0;
     }
 
     isReady() {
@@ -107,10 +106,13 @@ class Ada {
             this.x = this.maxX;
         } else if (this.x <= this.minX) {
             this.x = this.minX;
-        } else if (this.y >= this.maxY) {
+        } 
+        
+        if (this.y >= this.maxY) {
             this.y = this.maxY;
         } else if (this.y <= this.minY){
             this.y = this.minY;
+            this.vy = 0;
         }
     }
 
@@ -142,14 +144,8 @@ class Ada {
         } else if (this.drawCount % frequency === 0) {
             this.sprite.horizontalFrameIndex = (this.sprite.horizontalFrameIndex + 1) % maxHorizontalIndex;
             this.drawCount = 0;
+        } else {
         }
-    }
-
-    collidesWith(weapon) {
-        return this.x < weapon.x + weapon.width &&
-        this.x + this.width > weapon.x &&
-        this.y < weapon.y + weapon.height &&
-        this.y + this.height > weapon.y;
     }
 
     clear() {

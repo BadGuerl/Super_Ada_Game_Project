@@ -5,4 +5,4 @@ const KEY_LEFT = 37;
 const KEY_DEFENDING = 32;
 
 const SPEED = 4;
-const MOVEMENT_FRAMES = 6;
+const MOVEMENT_FRAMES = 10;
