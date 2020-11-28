@@ -3,7 +3,7 @@ class Weapon {
     constructor(ctx, x, y) {
         this.ctx = ctx;
         this.x = x;
-        this.vx = 3;
+        this.vx = 5;
         this.y = y;
 
         this.sprite = new Image();
@@ -24,15 +24,6 @@ class Weapon {
             left: false
         };
         this.drawCount = 0;
-    }
-
-    onKeyEvent(event) {
-        const state = event.type === 'keydown';
-        switch (event.keyCode) {
-            case KEY_RIGHT:
-                this.movements.left = state;
-                break;
-        }
     }
 
     animate() {
@@ -83,12 +74,6 @@ class Weapon {
         if (this.drawCount % MOVEMENT_FRAMES === 0) {
             this.sprite.horizontalFrameIndex = (this.sprite.horizontalFrameIndex + 1) % this.sprite.horizontalFrames;
             this.drawCount = 0;
-        }
-    }
-
-    move () {
-        if (this.movements.left) {
-            this.x -= SPEED;
         }
     }
 }

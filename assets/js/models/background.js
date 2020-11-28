@@ -65,7 +65,6 @@ class Background {
     }
  
     move() {
-        console.log(this);
         if (this.movement.right) {
             this.x += this.vx;
             if (this.x + this.width <= 0) {

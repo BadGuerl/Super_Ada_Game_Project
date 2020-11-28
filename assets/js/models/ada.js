@@ -25,7 +25,6 @@ class Ada {
         this.sprite.drawCount = 0;
 
         this.sprite.onload = () => {
-            
             this.sprite.isReady = true;
             this.sprite.frameWidth = Math.floor(this.sprite.width / this.sprite.horizontalFrames);
             this.sprite.frameHeight = Math.floor(this.sprite.height / this.sprite.verticalFrames);
@@ -50,19 +49,19 @@ class Ada {
         const status = event.type === 'keydown';
         switch (event.keyCode) {
             case KEY_RIGHT:
-                this.movement.right = status;
+                this.movements.right = status;
                 break;
             case KEY_LEFT:
-                this.movement.left = status;
+                this.movements.left = status;
                 break;
             case KEY_UP:
-                this.movement.up = status;
+                this.movements.up = status;
                 break;
             case KEY_DOWN:
-                this.movement.down = status;
+                this.movements.down = status;
                 break;
             case KEY_DEFENDING:
-                this.movement.defending = status;
+                this.movements.defending = status;
                 break;
         }
     }
@@ -86,13 +85,13 @@ class Ada {
     }
 
     move() {
-        if (this.movement.right) {
+        if (this.movements.right) {
             this.vx = SPEED;
-        } else if (this.movement.left) {
+        } else if (this.movements.left) {
             this.vx = -SPEED;
-        } else if (this.movement.up) {
+        } else if (this.movements.up) {
             this.vy = -SPEED;
-        } else if (this.movement.down) {
+        } else if (this.movements.down) {
             this.vy = SPEED;
         } else {
             this.vx = 0;
@@ -117,15 +116,15 @@ class Ada {
     }
 
     animate() {
-        if (this.movement.right) {
+        if (this.movements.right) {
         this.animateSprite(2, 0, 4, 5);
-        } else if (this.movement.left) {
+        } else if (this.movements.left) {
             this.animateSprite(1, 0, 4, 5);
-        } else if (this.movement.up) {
+        } else if (this.movements.up) {
             this.animateSprite(3, 0, 4, 5);
-        } else if (this.movement.down) {
+        } else if (this.movements.down) {
             this.animateSprite(0, 0, 4, 5);
-        } else if (this.movement.defending) {
+        } else if (this.movements.defending) {
             this.animateSprite(4, 0, 0, 0);
         } else {
             this.resetAnimation();
@@ -141,10 +140,9 @@ class Ada {
         if (this.sprite.verticalFrameIndex != initialVerticalIndex) {
             this.sprite.verticalFrameIndex = initialVerticalIndex;
             this.sprite.horizontalFrameIndex = initialHorizontalIndex;
-        } else if (this.drawCount % frequency === 0) {
+        } else if (this.sprite.drawCount % frequency === 0) {
             this.sprite.horizontalFrameIndex = (this.sprite.horizontalFrameIndex + 1) % maxHorizontalIndex;
-            this.drawCount = 0;
-        } else {
+            this.sprite.drawCount = 0;
         }
     }
 
