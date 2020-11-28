@@ -142,14 +142,8 @@ class Ada {
         } else if (this.drawCount % frequency === 0) {
             this.sprite.horizontalFrameIndex = (this.sprite.horizontalFrameIndex + 1) % maxHorizontalIndex;
             this.drawCount = 0;
+        } else {
         }
-    }
-
-    collidesWith(weapon) {
-        return this.x < weapon.x + weapon.width &&
-        this.x + this.width > weapon.x &&
-        this.y < weapon.y + weapon.height &&
-        this.y + this.height > weapon.y;
     }
 
     clear() {
