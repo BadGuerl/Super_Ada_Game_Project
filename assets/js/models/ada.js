@@ -39,6 +39,7 @@ class Ada {
             down: false,
             defending: false       
         }
+        //this.drawCount = 0;
     }
 
     isReady() {
@@ -79,7 +80,7 @@ class Ada {
                 this.width,
                 this.height
             )
-            this.drawCount++;
+            this.sprite.drawCount++;
             this.animate();
         }
     }

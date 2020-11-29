@@ -3,16 +3,16 @@ class Weapon {
     constructor(ctx, x, y) {
         this.ctx = ctx;
         this.x = x;
-        this.vx = 5;
+        //this.vx = 5;
         this.y = y;
 
         this.sprite = new Image();
         this.sprite.src = "assets/img/weapon.png";
+        this.sprite.isReady = false;
         this.sprite.horizontalFrameIndex = 0;
         this.sprite.verticalFrameIndex = 0;
         this.sprite.horizontalFrames = 5;
         this.sprite.verticalFrames = 1;
-        this.sprite.isReady = false;
         this.sprite.onload = () => {
             this.sprite.isReady = true;
             this.sprite.frameWhith = Math.floor(this.sprite.width / this.sprite.horizontalFrames);
@@ -26,14 +26,14 @@ class Weapon {
         this.drawCount = 0;
     }
 
-    animate() {
+    /* animate() {
         if (this.drawCount % MOVEMENT_FRAMES === 0) {
             this.sprite.horizontalFrameIndex = (this.sprite.horizontalFrameIndex + 1) % this.sprite.horizontalFrames;
             this.drawCount = 0;
         }
     }
-
-    animateSprite(initialVerticalFrame, initialHorizontalFrame, segments, frequency) {
+ */
+    /*animateSprite(initialVerticalFrame, initialHorizontalFrame, segments, frequency) {
         if (initialVerticalFrame !== this.sprite.verticalFrameIndex) {
             this.sprite.verticalFrameIndex = initialVerticalFrame;
             this.sprite.horizontalFrameIndex =  initialHorizontalFrame;
@@ -44,7 +44,7 @@ class Weapon {
                 this.drawCount = 0;
             }
         }
-    }
+    }*/
 
     draw() {
         if (this.sprite.isReady) {
@@ -59,15 +59,17 @@ class Weapon {
                 this.width,
                 this.height
             );
-            this.sprite.drawCount++;
+            this.drawCount++;
             this.animate();
         }
     }
 
     move() {
-       if (this.movements.left) {
+       if (this.x > 0-this.width) {
         this.x -= SPEED;
-        }
+       } else {
+           //Destruir
+       }
     }
 
     animate () {
@@ -75,5 +77,6 @@ class Weapon {
             this.sprite.horizontalFrameIndex = (this.sprite.horizontalFrameIndex + 1) % this.sprite.horizontalFrames;
             this.drawCount = 0;
         }
+        this.move();
     }
 }
