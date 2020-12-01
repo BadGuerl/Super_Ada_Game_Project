@@ -11,6 +11,6 @@ window.addEventListener('load', () => {
         })
     
     document.addEventListener('keypress', (event) => {
-        game.start();
+        game.start(event);
     })
 });

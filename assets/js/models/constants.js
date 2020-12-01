@@ -4,5 +4,5 @@ const KEY_DOWN = 40;
 const KEY_LEFT = 37;
 const KEY_DEFENDING = 32;
 
-const SPEED = 4;
+const SPEED = 3;
 const MOVEMENT_FRAMES = 10;

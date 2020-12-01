@@ -3,7 +3,6 @@ class Weapon {
     constructor(ctx, x, y) {
         this.ctx = ctx;
         this.x = x;
-        //this.vx = 5;
         this.y = y;
 
         this.sprite = new Image();
@@ -13,6 +12,7 @@ class Weapon {
         this.sprite.verticalFrameIndex = 0;
         this.sprite.horizontalFrames = 5;
         this.sprite.verticalFrames = 1;
+        
         this.sprite.onload = () => {
             this.sprite.isReady = true;
             this.sprite.frameWhith = Math.floor(this.sprite.width / this.sprite.horizontalFrames);
@@ -25,26 +25,6 @@ class Weapon {
         };
         this.drawCount = 0;
     }
-
-    /* animate() {
-        if (this.drawCount % MOVEMENT_FRAMES === 0) {
-            this.sprite.horizontalFrameIndex = (this.sprite.horizontalFrameIndex + 1) % this.sprite.horizontalFrames;
-            this.drawCount = 0;
-        }
-    }
- */
-    /*animateSprite(initialVerticalFrame, initialHorizontalFrame, segments, frequency) {
-        if (initialVerticalFrame !== this.sprite.verticalFrameIndex) {
-            this.sprite.verticalFrameIndex = initialVerticalFrame;
-            this.sprite.horizontalFrameIndex =  initialHorizontalFrame;
-        } else if (this.drawCount % frequency === 0) {
-            this.sprite.horizontalFrameIndex++;
-            if (this.sprite.horizontalFrameIndex === segments) {
-                this.sprite.horizontalFrameIndex =0;
-                this.drawCount = 0;
-            }
-        }
-    }*/
 
     draw() {
         if (this.sprite.isReady) {

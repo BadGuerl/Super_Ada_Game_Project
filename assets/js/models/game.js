@@ -12,17 +12,17 @@ class Game {
         this.intro = new Intro(this.ctx);
         this.background = new Background(this.ctx);
         this.ada = new Ada(this.ctx, 15, 550);
-        this.enemy = new Enemy(this.ctx, 800, 550);
+        this.enemy = new Enemy(this.ctx, this.canvas.width, 550);
 
         this.weapons = [
-            new Weapon(this.ctx, this.ada.x + 800, this.ada.y + 50)
+            new Weapon(this.ctx, this.enemy.x, this.enemy.y + 50)
         ];
     }
 
     onKeyEvent(event) {
+        this.intro.onKeyEvent(event);
         this.ada.onKeyEvent(event);
         this.background.onKeyEvent(event);
-        this.intro.onKeyEvent(event);
     }
 
     start() {

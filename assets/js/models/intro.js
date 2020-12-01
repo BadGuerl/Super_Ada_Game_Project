@@ -1,4 +1,5 @@
 class Intro {
+
     constructor(ctx) {
         this.ctx = ctx;
 
@@ -23,7 +24,7 @@ class Intro {
         const status = event.type === 'keypress';
         switch (event.keyCode) {
             case KEY_DEFENDING:
-                this.game.start = status;
+                game.start(event) = status;
                 break;
         }
     }
@@ -45,9 +46,5 @@ class Intro {
                 this.height
             )
         }
-    }
-
-    clear() {
-        
     }
 }
