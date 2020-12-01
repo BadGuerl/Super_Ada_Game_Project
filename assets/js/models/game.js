@@ -57,11 +57,12 @@ class Game {
         this.ada.draw();
         this.weapons.forEach(weapon => weapon.draw());
         this.enemy.draw();
-        this.pointsWeapon.draw();
         this.ctx.save();
-        this.ctx.font = "27px Rockwell";
-        this.ctx.fillText(this.weapons, 40, 30);
+        this.ctx.font = "2.5em Rockwell";
+        this.ctx.fillStyle = "#FFFFFF";
+        this.ctx.fillText(this.weapons.length, 80, 50);
         this.ctx.restore();
+        this.counterImg.draw();
     }
 
     move() {

@@ -65,6 +65,9 @@ class Ada {
             case KEY_DEFENDING:
                 this.movements.defending = status;
                 break;
+            case KEY_START:
+                this.game.start = status;
+                break;
         }
     }
 
@@ -127,7 +130,7 @@ class Ada {
         } else if (this.movements.down) {
             this.animateSprite(0, 0, 4, 5);
         } else if (this.movements.defending) {
-            this.animateSprite(4, 0, 0, 0);
+            this.animateSprite(4, 0, 1, 5);
         } else {
             this.resetAnimation();
         }
@@ -148,14 +151,12 @@ class Ada {
         }
     }
 
-
-    collidesWidth(weapon) {
-        return this.x < weapon.x + weapon.width &&
-            this.x + this.width > weapon;
+    collidesWidth(element) {
+        return this.x < element.x + element.width &&
+            this.x + this.width > element;
     }
 
     clear() {
 
     }
-
 }

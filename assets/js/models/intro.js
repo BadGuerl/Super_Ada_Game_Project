@@ -38,11 +38,11 @@ class Intro {
             )
         }
     }
-    
+
     onKeyEvent(event) {
         const status = event.type === 'keypress';
         switch (event.keyCode) {
-            case KEY_DEFENDING:
+            case KEY_START:
                 game.start(event) = status;
                 break;
         }

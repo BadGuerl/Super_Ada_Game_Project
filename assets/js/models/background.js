@@ -21,6 +21,15 @@ class Background {
             up: false,
             down: false
         }
+
+        this.counterImg = new Image();
+        this.counterImg.src = 'assets/weapon.png';
+        this.counterImg.isReady = false;
+        this.counterImg.height = 64;
+        this.counterImg.onload = () => {
+            this.counterImg.isReady = true;
+            this.counterImg.width = this.width;
+        }
     }
 
     isReady() {
@@ -55,15 +64,22 @@ class Background {
                 this.height
             )
             this.ctx.drawImage(
-                this.img,
-                this.x + this.width,
-                this.y,
-                this.width,
-                this.height
-            )
+                    this.img,
+                    this.x + this.width,
+                    this.y,
+                    this.width,
+                    this.height
+                )
+                // this.ctx.drawImage(
+                //     this.counterImg,
+                //     this.x + this.counterImg.width,
+                //     this.y,
+                //     this.counterImg.width,
+                //     this.counterImg.height
+                // )
         }
     }
- 
+
     move() {
         if (this.movement.right) {
             this.x += this.vx;

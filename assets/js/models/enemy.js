@@ -8,10 +8,11 @@ class Enemy {
         this.sprite = new Image();
         this.sprite.src = './assets/img/enemy1.png';
         this.sprite.isReady = false;
+        this.sprite.horizontalFrameIndex = 0;
+        this.sprite.verticalFrameIndex = 0;
         this.sprite.horizontalFrames = 4;
         this.sprite.verticalFrames = 1;
-        this.sprite.verticalFrameIndex = 0;
-        this.sprite.horizontalFrameIndex = 0;
+
 
         this.sprite.onload = () => {
             this.sprite.isReady = true;
@@ -45,10 +46,8 @@ class Enemy {
     }
 
     move() {
-        if (this.x > 0-this.width) {
+        if (this.x > 0 - this.width) {
             this.x -= SPEED;
-        } else {
-            //destruir
         }
     }
 
