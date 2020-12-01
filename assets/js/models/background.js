@@ -70,7 +70,6 @@ class Background {
             if (this.x + this.width <= 0) {
                 this.x = 0;
             }
-        
         }
     }
 }

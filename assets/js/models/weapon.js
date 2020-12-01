@@ -1,5 +1,5 @@
 class Weapon {
-    
+
     constructor(ctx, x, y) {
         this.ctx = ctx;
         this.x = x;
@@ -12,12 +12,12 @@ class Weapon {
         this.sprite.verticalFrameIndex = 0;
         this.sprite.horizontalFrames = 5;
         this.sprite.verticalFrames = 1;
-        
+
         this.sprite.onload = () => {
             this.sprite.isReady = true;
-            this.sprite.frameWhith = Math.floor(this.sprite.width / this.sprite.horizontalFrames);
+            this.sprite.frameWidth = Math.floor(this.sprite.width / this.sprite.horizontalFrames);
             this.sprite.frameHeight = Math.floor(this.sprite.height / this.sprite.verticalFrames);
-            this.width = this.sprite.frameWhith;
+            this.width = this.sprite.frameWidth;
             this.height = this.sprite.frameHeight;
         };
         this.movements = {
@@ -30,9 +30,9 @@ class Weapon {
         if (this.sprite.isReady) {
             this.ctx.drawImage(
                 this.sprite,
-                this.sprite.horizontalFrameIndex * this.sprite.frameWhith,
+                this.sprite.horizontalFrameIndex * this.sprite.frameWidth,
                 this.sprite.verticalFrameIndex * this.sprite.frameHeight,
-                this.sprite.frameWhith,
+                this.sprite.frameWidth,
                 this.sprite.frameHeight,
                 this.x,
                 this.y,
@@ -45,18 +45,17 @@ class Weapon {
     }
 
     move() {
-       if (this.x > 0-this.width) {
-        this.x -= SPEED;
-       } else {
-           //Destruir
-       }
+        if (this.x > 0 - this.width) {
+            this.x -= SPEED;
+        }
     }
 
-    animate () {
+    animate() {
         if (this.drawCount % MOVEMENT_FRAMES === 0) {
             this.sprite.horizontalFrameIndex = (this.sprite.horizontalFrameIndex + 1) % this.sprite.horizontalFrames;
             this.drawCount = 0;
         }
         this.move();
     }
+
 }

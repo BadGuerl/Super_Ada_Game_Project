@@ -4,14 +4,16 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #000;
-
 }
 
 body * {
     box-sizing: border-box;
+}
+
+canvas {
+    overflow: hidden;
 }

@@ -17,13 +17,11 @@ class Game {
         this.weapons = [
             new Weapon(this.ctx, this.enemy.x, this.enemy.y + 50)
         ];
+
+        this.pointsWeapon = new Weapon(this.ctx, 10, 10)
+        this.points = 0;
     }
 
-    onKeyEvent(event) {
-        this.intro.onKeyEvent(event);
-        this.ada.onKeyEvent(event);
-        this.background.onKeyEvent(event);
-    }
 
     start() {
         if (!this.drawIntervalId) {
@@ -31,8 +29,16 @@ class Game {
                 this.clear();
                 this.move();
                 this.draw();
+                this.checkCollisions();
             }, this.fps)
         }
+    }
+
+    onKeyEvent(event) {
+        this.intro.onKeyEvent(event);
+        this.ada.onKeyEvent(event);
+        this.background.onKeyEvent(event);
+        this.weapons.forEach(weapon => weapon.onKeyEvent(event))
     }
 
     clear() {
@@ -51,13 +57,30 @@ class Game {
         this.ada.draw();
         this.weapons.forEach(weapon => weapon.draw());
         this.enemy.draw();
+        this.pointsWeapon.draw();
+        this.ctx.save();
+        this.ctx.font = "27px Rockwell";
+        this.ctx.fillText(this.weapons, 40, 30);
+        this.ctx.restore();
     }
 
     move() {
         if (this.ada.x >= this.ada.maxX) {
             this.weapons.forEach(weapon => weapon.move());
             this.background.move();
-        } 
+        }
         this.ada.move();
+    }
+
+    checkCollisions() {
+        const restOfWeapons = this.weapons.filter(weapon => !this.ada.collidesWidth(weapon));
+        const newPoints = this.weapons.length - restOfWeapons.length;
+        this.points += newPoints;
+        Array(newPoints).fill().forEach(() => {
+            this.sounds.weapon.currentTime = 0;
+            this.sounds.weapon.play();
+        })
+
+        this.weapons = restOfWeapons;
     }
 }

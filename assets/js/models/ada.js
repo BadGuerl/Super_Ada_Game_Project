@@ -37,9 +37,10 @@ class Ada {
             left: false,
             up: false,
             down: false,
-            defending: false       
+            defending: false
         }
-        //this.drawCount = 0;
+
+        this.drawCount = 0;
     }
 
     isReady() {
@@ -106,11 +107,11 @@ class Ada {
             this.x = this.maxX;
         } else if (this.x <= this.minX) {
             this.x = this.minX;
-        } 
-        
+        }
+
         if (this.y >= this.maxY) {
             this.y = this.maxY;
-        } else if (this.y <= this.minY){
+        } else if (this.y <= this.minY) {
             this.y = this.minY;
             this.vy = 0;
         }
@@ -118,7 +119,7 @@ class Ada {
 
     animate() {
         if (this.movements.right) {
-        this.animateSprite(2, 0, 4, 5);
+            this.animateSprite(2, 0, 4, 5);
         } else if (this.movements.left) {
             this.animateSprite(1, 0, 4, 5);
         } else if (this.movements.up) {
@@ -137,7 +138,7 @@ class Ada {
         this.sprite.horizontalFrameIndex = 0;
     }
 
-    animateSprite(initialVerticalIndex, initialHorizontalIndex, maxHorizontalIndex, frequency)  {
+    animateSprite(initialVerticalIndex, initialHorizontalIndex, maxHorizontalIndex, frequency) {
         if (this.sprite.verticalFrameIndex != initialVerticalIndex) {
             this.sprite.verticalFrameIndex = initialVerticalIndex;
             this.sprite.horizontalFrameIndex = initialHorizontalIndex;
@@ -147,8 +148,14 @@ class Ada {
         }
     }
 
-    clear() {
-        
+
+    collidesWidth(weapon) {
+        return this.x < weapon.x + weapon.width &&
+            this.x + this.width > weapon;
     }
-    
+
+    clear() {
+
+    }
+
 }

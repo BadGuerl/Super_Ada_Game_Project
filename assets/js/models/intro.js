@@ -20,15 +20,6 @@ class Intro {
         return this.img.isReady;
     }
 
-    onKeyEvent(event) {
-        const status = event.type === 'keypress';
-        switch (event.keyCode) {
-            case KEY_DEFENDING:
-                game.start(event) = status;
-                break;
-        }
-    }
-
     draw() {
         if (this.img.isReady) {
             this.ctx.drawImage(
@@ -45,6 +36,15 @@ class Intro {
                 this.width,
                 this.height
             )
+        }
+    }
+    
+    onKeyEvent(event) {
+        const status = event.type === 'keypress';
+        switch (event.keyCode) {
+            case KEY_DEFENDING:
+                game.start(event) = status;
+                break;
         }
     }
 }
