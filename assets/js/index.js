@@ -1,6 +1,6 @@
 window.addEventListener('load', () => {
-    const game = new Game('game-canvas');
-    game.start();
+    const game = new Game('game-canvas', "intro");
+    //game.start();
 
     document.addEventListener('keydown', (event) => {
         game.onKeyEvent(event);

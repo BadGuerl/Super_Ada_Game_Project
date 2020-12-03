@@ -15,5 +15,21 @@ body * {
 }
 
 canvas {
+    display: none;
     overflow: hidden;
+}
+
+#startGame {
+    /* width: 1366px; */
+    height: 768px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; */
+}
+
+.game-container {
+    overflow: hidden;
+    height: 768px;
+    cursor: pointer;
 }

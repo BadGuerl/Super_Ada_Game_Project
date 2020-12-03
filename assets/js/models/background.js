@@ -23,7 +23,7 @@ class Background {
         }
 
         this.counterImg = new Image();
-        this.counterImg.src = 'assets/weapon.png';
+        this.counterImg.src = 'assets/img/weapon.png';
         this.counterImg.isReady = false;
         this.counterImg.height = 64;
         this.counterImg.onload = () => {

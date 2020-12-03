@@ -19,7 +19,7 @@ class Ada {
         this.sprite.src = './assets/img/ada.sprite.png';
         this.sprite.isReady = false;
         this.sprite.horizontalFrames = 4;
-        this.sprite.verticalFrames = 5;
+        this.sprite.verticalFrames = 6;
         this.sprite.verticalFrameIndex = 0;
         this.sprite.horizontalFrameIndex = 0;
         this.sprite.drawCount = 0;
@@ -65,9 +65,9 @@ class Ada {
             case KEY_DEFENDING:
                 this.movements.defending = status;
                 break;
-            case KEY_START:
-                this.game.start = status;
-                break;
+                /*case KEY_START:
+                    this.game.start = status;
+                    break;*/
         }
     }
 
@@ -126,11 +126,11 @@ class Ada {
         } else if (this.movements.left) {
             this.animateSprite(1, 0, 4, 5);
         } else if (this.movements.up) {
-            this.animateSprite(3, 0, 4, 5);
+            this.animateSprite(3, 0, 3, 5);
         } else if (this.movements.down) {
             this.animateSprite(0, 0, 4, 5);
         } else if (this.movements.defending) {
-            this.animateSprite(4, 0, 1, 5);
+            this.animateSprite(4, 0, 0, 0);
         } else {
             this.resetAnimation();
         }
@@ -153,7 +153,7 @@ class Ada {
 
     collidesWidth(element) {
         return this.x < element.x + element.width &&
-            this.x + this.width > element;
+            this.x + this.width > element.x;
     }
 
     clear() {

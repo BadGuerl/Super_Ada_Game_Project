@@ -46,7 +46,7 @@ class Weapon {
 
     move() {
         if (this.x > 0 - this.width) {
-            this.x -= SPEED;
+            this.x -= SPEED * 1.5;
         }
     }
 
