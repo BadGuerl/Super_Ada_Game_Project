@@ -39,7 +39,6 @@ class Ada {
             down: false,
             defending: false
         }
-
         this.drawCount = 0;
     }
 
@@ -65,9 +64,6 @@ class Ada {
             case KEY_DEFENDING:
                 this.movements.defending = status;
                 break;
-                /*case KEY_START:
-                    this.game.start = status;
-                    break;*/
         }
     }
 

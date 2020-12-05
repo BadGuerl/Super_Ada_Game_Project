@@ -14,16 +14,18 @@ class Game {
 
         this.background = new Background(this.ctx);
         this.ada = new Ada(this.ctx, 15, 550);
-        this.enemy = new Enemy(this.ctx, this.canvas.width, 550);
-        //this.enemies = [new Enemy(this.ctx, this.canvas.width, 550), new Pura(this.ctx, this.canvas.width * 2, 550)];
-        //this.enemy = new Pura(this.ctx, this.canvas.width, 550);
-
-        this.weapons = [
-            new Weapon(this.ctx, this.enemy.x, this.enemy.y + 50)
+        this.enemies = [
+            new Enemy(this.ctx, this.canvas.width, 550, 'enemy1'),
+            new Enemy(this.ctx, this.canvas.width + 100, 500, 'enemy2'),
+            new Enemy(this.ctx, this.canvas.width + 300, 500, 'enemy3'),
+            new Enemy(this.ctx, this.canvas.width + 400, 500, 'enemy4'),
+            new Enemy(this.ctx, this.canvas.width + 480, 500, 'enemy5'),
+            new Enemy(this.ctx, this.canvas.width + 500, 500, 'enemy6'),
+            new Enemy(this.ctx, this.canvas.width + 650, 500, 'enemy7')
         ];
 
-        this.pointsWeapon = new Weapon(this.ctx, 10, 10)
-        this.points = 0;
+        this.heart = new Heart(this.ctx, 25, 15);
+        this.points = 3;
     }
 
 
@@ -41,10 +43,8 @@ class Game {
     }
 
     onKeyEvent(event) {
-        // this.intro.onKeyEvent(event);
         this.ada.onKeyEvent(event);
         this.background.onKeyEvent(event);
-        //this.weapons.forEach(weapon => weapon.onKeyEvent(event))
         const status = event.type === 'keydown';
         switch (event.keyCode) {
             case KEY_START:
@@ -72,14 +72,12 @@ class Game {
     }
 
     draw() {
-        // this.intro.draw();
         this.background.draw();
         this.ada.draw();
         this.weapons.forEach(weapon => weapon.draw());
-        this.enemy.draw();
-        //this.enemies.forEach(enemy => enemy.draw());
+        this.enemies.map(enemy => enemy.draw());
         this.setScore(this.points);
-        //this.counterImg.draw();
+        this.heart.draw();
     }
 
     setScore(score) {
@@ -94,17 +92,5 @@ class Game {
             this.background.move();
         }
         this.ada.move();
-    }
-
-    checkCollisions() {
-        const restOfWeapons = this.weapons.filter(weapon => !this.ada.collidesWidth(weapon));
-        const newPoints = this.weapons.length - restOfWeapons.length;
-        this.points += newPoints;
-        /* Array(newPoints).fill().forEach(() => {
-             this.sounds.weapon.currentTime = 0;
-             this.sounds.weapon.play();
-         })*/
-
-        this.weapons = restOfWeapons;
     }
 }

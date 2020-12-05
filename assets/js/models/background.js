@@ -64,19 +64,12 @@ class Background {
                 this.height
             )
             this.ctx.drawImage(
-                    this.img,
-                    this.x + this.width,
-                    this.y,
-                    this.width,
-                    this.height
-                )
-                // this.ctx.drawImage(
-                //     this.counterImg,
-                //     this.x + this.counterImg.width,
-                //     this.y,
-                //     this.counterImg.width,
-                //     this.counterImg.height
-                // )
+                this.img,
+                this.x + this.width,
+                this.y,
+                this.width,
+                this.height
+            )
         }
     }
 

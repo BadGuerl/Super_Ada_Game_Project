@@ -26,6 +26,7 @@ class Weapon {
         this.drawCount = 0;
     }
 
+    //setTimeout = scope.setTimeout(draw[this.sprite, 1000]);
     draw() {
         if (this.sprite.isReady) {
             this.ctx.drawImage(
