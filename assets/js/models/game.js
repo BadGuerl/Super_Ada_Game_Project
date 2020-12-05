@@ -16,16 +16,19 @@ class Game {
         this.ada = new Ada(this.ctx, 15, 550);
         this.enemies = [
             new Enemy(this.ctx, this.canvas.width, 550, 'enemy1'),
-            new Enemy(this.ctx, this.canvas.width + 100, 500, 'enemy2'),
-            new Enemy(this.ctx, this.canvas.width + 300, 500, 'enemy3'),
-            new Enemy(this.ctx, this.canvas.width + 400, 500, 'enemy4'),
-            new Enemy(this.ctx, this.canvas.width + 480, 500, 'enemy5'),
-            new Enemy(this.ctx, this.canvas.width + 500, 500, 'enemy6'),
-            new Enemy(this.ctx, this.canvas.width + 650, 500, 'enemy7')
+            new Enemy(this.ctx, this.canvas.width + 1000, 500, 'enemy2'),
+            new Enemy(this.ctx, this.canvas.width + 2000, 600, 'enemy3'),
+            // new Enemy(this.ctx, this.canvas.width + 3500, 480, 'enemy4'),
+            // new Enemy(this.ctx, this.canvas.width + 4500, 520, 'enemy5'),
+            // new Enemy(this.ctx, this.canvas.width + 6000, 500, 'enemy6'),
+            // new Enemy(this.ctx, this.canvas.width + 7500, 550, 'enemy7')
         ];
 
+        this.shield = new Shield(this.ctx, 1200, 15);
         this.heart = new Heart(this.ctx, 25, 15);
         this.points = 3;
+        this.defendPoints = 0;
+        this.weapons = this.enemies.map(enemy => enemy.weapon);
     }
 
 
@@ -74,15 +77,23 @@ class Game {
     draw() {
         this.background.draw();
         this.ada.draw();
-        this.weapons.forEach(weapon => weapon.draw());
+        // this.weapons.forEach(weapon => weapon.draw());
         this.enemies.map(enemy => enemy.draw());
         this.setScore(this.points);
+        this.setScoreDefend(this.defendPoints);
         this.heart.draw();
+        this.shield.draw();
     }
 
     setScore(score) {
         this.ctx.save();
         this.ctx.fillText(score, 80, 50);
+        this.ctx.restore();
+    }
+
+    setScoreDefend(score) {
+        this.ctx.save();
+        this.ctx.fillText(score, 1300, 50);
         this.ctx.restore();
     }
 
@@ -92,5 +103,18 @@ class Game {
             this.background.move();
         }
         this.ada.move();
+    }
+
+    checkCollisions() {
+        const restOfWeapons = this.weapons.filter(weapon => !this.ada.collidesWidth(weapon));
+        const newPoints = this.weapons.length - restOfWeapons.length;
+        this.points -= newPoints;
+        this.defendPoints += newPoints;
+        /* Array(newPoints).fill().forEach(() => {
+             this.sounds.weapon.currentTime = 0;
+             this.sounds.weapon.play();
+         })*/
+
+        this.weapons = restOfWeapons;
     }
 }

@@ -13,7 +13,6 @@ class Enemy {
         this.sprite.horizontalFrames = 4;
         this.sprite.verticalFrames = 1;
 
-
         this.sprite.onload = () => {
             this.sprite.isReady = true;
             this.sprite.frameWidth = Math.floor(this.sprite.width / this.sprite.horizontalFrames);
@@ -43,8 +42,10 @@ class Enemy {
                 this.height
             )
             this.weapon.draw();
+            // this.weapons.map(weapon => weapon.draw());
             this.drawCount++;
             this.animate();
+            // this.checkCollisions();
         }
     }
 
@@ -62,14 +63,3 @@ class Enemy {
         this.move();
     }
 }
-
-// let enemy1 = new Enemy(enemy1);
-// let enemy2 = new Enemy(enemy2);
-// let enemy3 = new Enemy(enemy3);
-// let enemy4 = new Enemy(enemy4);
-// let enemy5 = new Enemy(enemy5);
-// let enemy6 = new Enemy(enemy6);
-// let enemy7 = new Enemy(enemy7);
-// let enemy8 = new Enemy(enemy8);
-// let enemy9 = new Enemy(enemy9);
-// let enemy10 = new Enemy(enemy10);

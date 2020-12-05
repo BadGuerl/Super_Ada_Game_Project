@@ -4,4 +4,4 @@ class Enemies extends Enemy {
         super(ctx, x, y);
         this.sprite.src = './assets/img/enemy2.png';
     }
-}
+} 

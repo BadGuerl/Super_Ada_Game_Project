@@ -150,6 +150,7 @@ class Ada {
     collidesWidth(element) {
         return this.x < element.x + element.width &&
             this.x + this.width > element.x;
+            // this.animate.movements === !this.movements.defending;
     }
 
     clear() {
