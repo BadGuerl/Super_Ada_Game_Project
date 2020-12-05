@@ -24,7 +24,10 @@ class Enemy {
             left: false
         };
         this.drawCount = 0;
-        this.weapon = new Weapon(this.ctx, this.x, this.y + 50);
+        this.weapon = null;
+        setTimeout(() => {
+            this.weapon = new Weapon(this.ctx, this.x, this.y + 50);
+        }, 500);
     }
 
     draw() {
@@ -41,7 +44,10 @@ class Enemy {
                 this.width,
                 this.height
             )
-            this.weapon.draw();
+            if (this.weapon != null) {
+                this.weapon.draw();
+            }
+            
             // this.weapons.map(weapon => weapon.draw());
             this.drawCount++;
             this.animate();

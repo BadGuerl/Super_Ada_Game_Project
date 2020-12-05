@@ -14,21 +14,25 @@ class Game {
 
         this.background = new Background(this.ctx);
         this.ada = new Ada(this.ctx, 15, 550);
-        this.enemies = [
-            new Enemy(this.ctx, this.canvas.width, 550, 'enemy1'),
-            new Enemy(this.ctx, this.canvas.width + 1000, 500, 'enemy2'),
-            new Enemy(this.ctx, this.canvas.width + 2000, 600, 'enemy3'),
-            // new Enemy(this.ctx, this.canvas.width + 3500, 480, 'enemy4'),
-            // new Enemy(this.ctx, this.canvas.width + 4500, 520, 'enemy5'),
-            // new Enemy(this.ctx, this.canvas.width + 6000, 500, 'enemy6'),
-            // new Enemy(this.ctx, this.canvas.width + 7500, 550, 'enemy7')
-        ];
-
-        this.shield = new Shield(this.ctx, 1200, 15);
+        // this.enemies = [
+        //     new Enemy(this.ctx, this.canvas.width -50, 550, 'enemy1')
+        //     // new Enemy(this.ctx, this.canvas.width + 1000, 500, 'enemy2'),
+        //     // new Enemy(this.ctx, this.canvas.width + 2000, 600, 'enemy3'),
+        //     // new Enemy(this.ctx, this.canvas.width + 3500, 480, 'enemy4'),
+        //     // new Enemy(this.ctx, this.canvas.width + 4500, 520, 'enemy5'),
+        //     // new Enemy(this.ctx, this.canvas.width + 6000, 500, 'enemy6'),
+        //     // new Enemy(this.ctx, this.canvas.width + 7500, 550, 'enemy7')
+        // ];
+        this.enemies = [];
+        this.weapons = [];
+        this.maxY = this.canvas.height - 140;
+        this.minY = Math.floor(this.canvas.height / 1.7);
+       
+        this.shield = new Shield(this.ctx, 1250, 15);
         this.heart = new Heart(this.ctx, 25, 15);
         this.points = 3;
         this.defendPoints = 0;
-        this.weapons = this.enemies.map(enemy => enemy.weapon);
+        // this.weapons = this.enemies.map(enemy => enemy.weapon);
     }
 
 
@@ -36,12 +40,21 @@ class Game {
         this.intro.style.display = "none";
         this.canvas.style.display = "block";
         if (!this.drawIntervalId) {
+            setInterval(() => {
+                let enemyId = Math.floor(Math.random() * 10) + 1;
+                // let enemyY = Math.floor(Math.random() * this.maxY) + this.minY;
+                let enemyY =Math.floor(Math.random() * (this.maxY - this.minY + 1)) + this.minY;
+                // enemyY = (enemyY > this.maxY)? this.maxY : enemyY;
+                // console.log(enemyY," ", this.maxY);
+                this.enemies.push(new Enemy(this.ctx, this.canvas.width -50, enemyY, 'enemy' + enemyId));
+            }, 3000);
             this.drawIntervalId = setInterval(() => {
                 this.clear();
                 this.move();
                 this.draw();
                 this.checkCollisions();
-            }, this.fps)
+            }, this.fps);
+            
         }
     }
 
@@ -99,7 +112,7 @@ class Game {
 
     move() {
         if (this.ada.x >= this.ada.maxX) {
-            this.weapons.forEach(weapon => weapon.move());
+            // this.weapons.forEach(weapon => weapon.move());
             this.background.move();
         }
         this.ada.move();
