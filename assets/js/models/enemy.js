@@ -24,9 +24,12 @@ class Enemy {
             left: false
         };
         this.drawCount = 0;
-        this.weapon = null;
+        this.weapon = false;
+        this.comment = false;
+        //this.comment.src = `./assets/img/${name}.png`
         setTimeout(() => {
             this.weapon = new Weapon(this.ctx, this.x, this.y + 50);
+            this.comment = new Comment(this.ctx, this.x -40, this.y -110);
         }, 500);
     }
 
@@ -44,8 +47,9 @@ class Enemy {
                 this.width,
                 this.height
             )
-            if (this.weapon != null) {
+            if (this.weapon != false && this.comment != false) {
                 this.weapon.draw();
+                this.comment.draw();
             }
             
             // this.weapons.map(weapon => weapon.draw());

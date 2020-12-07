@@ -3,7 +3,7 @@ class Ada {
     constructor(ctx, x, y) {
         this.ctx = ctx;
         this.x = x;
-        this.maxX = this.ctx.canvas.width / 2;
+        this.maxX = this.ctx.canvas.width / 3;
         this.minX = 0;
         this.vx = 0;
 
@@ -149,7 +149,9 @@ class Ada {
 
     collidesWidth(element) {
         return this.x < element.x + element.width &&
-            this.x + this.width > element.x;
+            this.x + this.width > element.x &&
+            this.y + 50 < element.y + element.height &&
+            this.y + this.height - 50 > element.y;
             // this.animate.movements === !this.movements.defending;
     }
 

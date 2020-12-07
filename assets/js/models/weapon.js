@@ -23,10 +23,11 @@ class Weapon {
         this.movements = {
             left: false
         };
+        // this.weapons.map(weapon => weapon.draw());
         this.drawCount = 0;
+        // this.checkCollisions();
     }
 
-    //setTimeout = scope.setTimeout(draw[this.sprite, 1000]);
     draw() {
         if (this.sprite.isReady) {
             this.ctx.drawImage(
@@ -47,7 +48,7 @@ class Weapon {
 
     move() {
         if (this.x > 0 - this.width) {
-            this.x -= SPEED * 1.5;
+            this.x -= SPEED * 1.3;
         }
     }
 

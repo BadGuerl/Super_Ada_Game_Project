@@ -21,15 +21,6 @@ class Background {
             up: false,
             down: false
         }
-
-        this.counterImg = new Image();
-        this.counterImg.src = 'assets/img/weapon.png';
-        this.counterImg.isReady = false;
-        this.counterImg.height = 64;
-        this.counterImg.onload = () => {
-            this.counterImg.isReady = true;
-            this.counterImg.width = this.width;
-        }
     }
 
     isReady() {
