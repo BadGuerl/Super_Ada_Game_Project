@@ -26,10 +26,9 @@ class Enemy {
         this.drawCount = 0;
         this.weapon = false;
         this.comment = false;
-        //this.comment.src = `./assets/img/${name}.png`
         setTimeout(() => {
             this.weapon = new Weapon(this.ctx, this.x, this.y + 50);
-            this.comment = new Comment(this.ctx, this.x -40, this.y -110);
+            this.comment = new Comment(this.ctx, this.x, this.y - 80);
         }, 500);
     }
 
@@ -48,7 +47,10 @@ class Enemy {
                 this.height
             )
             if (this.weapon != false && this.comment != false) {
-                this.weapon.draw();
+                // if (!this.weapon.clearWeapon) {
+                    this.weapon.draw();
+                // }
+
                 this.comment.draw();
             }
             

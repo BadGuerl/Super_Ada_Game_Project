@@ -1,5 +1,5 @@
-class Comment {
-
+class GameOver {
+    
     constructor(ctx, x, y) {
 
         this.ctx = ctx;
@@ -8,28 +8,28 @@ class Comment {
         this.width = 0;
         this.height = 0;
         this.img = new Image();
-        this.commentId = Math.floor(Math.random() * 10) +1;
-        this.img.src = `./assets/img/comment${this.commentId}.png`;
+        this.img.src = './assets/img/gameOver.png';
         this.img.isReady = false;
         this.img.onload = () => {
-               this.img.isReady = true;
-         }
-     }
-    
+            this.img.isReady = true;
+        }
+    }
+
     draw() {
         if (this.img.isReady) {
             this.ctx.drawImage(
                 this.img,
                 this.x,
                 this.y,
-             );
-            this.drawCount++;
-            this.move();
+                this.img.width,
+                this.img.height
+            );
+        }
+        
+        this.setScore(this.points);
+        if (this.points <= 0) {
+            this.GameOver.draw();
         }
     }
 
-    move() {
-        this.x -= SPEED * 1;
-    }   
 }
-

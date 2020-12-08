@@ -26,6 +26,7 @@ class Weapon {
         // this.weapons.map(weapon => weapon.draw());
         this.drawCount = 0;
         // this.checkCollisions();
+        // this.clearWeapon = false;
     }
 
     draw() {

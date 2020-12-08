@@ -41,7 +41,7 @@ class Game {
                 // enemyY = (enemyY > this.maxY)? this.maxY : enemyY;
                 // console.log(enemyY," ", this.maxY);
                 this.enemies.push(new Enemy(this.ctx, this.canvas.width -50, enemyY, 'enemy' + enemyId));
-                this.weapons = this.enemies.map(enemy=>enemy.weapon);
+                this.weapons = this.enemies.map(enemy=>enemy.weapon).filter(weapon => weapon!=false);
             }, 3000);
 
             this.drawIntervalId = setInterval(() => {
@@ -89,6 +89,9 @@ class Game {
         //this.weapons.forEach(weapon => weapon.draw());
         this.enemies.map(enemy => enemy.draw());
         this.setScore(this.points);
+        if (this.points <= 0) {
+            this.endGame();
+        }
         this.setScoreDefend(this.defendPoints);
         this.heart.draw();
         this.shield.draw();
@@ -118,14 +121,22 @@ class Game {
         
         const restOfWeapons = this.weapons.filter(weapon => !this.ada.collidesWidth(weapon));
         const newPoints = this.weapons.length - restOfWeapons.length;
-        
-        this.points -= newPoints;
-        this.defendPoints += newPoints;
+            
+            if (this.ada.movements.defending) {
+                this.defendPoints += newPoints;
+            } else {
+                this.points -= newPoints;
+                
+            }
         // Array(newPoints).fill().forEach(() => {
         //      this.sounds.weapon.currentTime = 0;
         //      this.sounds.weapon.play();
         //  })
-
+            // console.log(restOfWeapons);
         this.weapons = restOfWeapons;
+    }
+
+    endGame() {
+        clearInterval(this.drawIntervalId);
     }
 }
