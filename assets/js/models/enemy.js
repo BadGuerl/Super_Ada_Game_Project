@@ -29,7 +29,13 @@ class Enemy {
         setTimeout(() => {
             this.weapon = new Weapon(this.ctx, this.x, this.y + 50);
             this.comment = new Comment(this.ctx, this.x, this.y - 80);
+            this.sounds.cuchillo.currentTime = 0;
+            this.sounds.cuchillo.play();
         }, 500);
+
+        this.sounds = {
+            cuchillo: new Audio('./assets/sound/cuchillo.mp3')
+        }
     }
 
     draw() {

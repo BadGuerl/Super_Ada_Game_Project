@@ -1,4 +1,4 @@
-class Gameover {
+class Wingame {
     
     constructor(ctx, x, y) {
 
@@ -8,13 +8,10 @@ class Gameover {
         this.width = 0;
         this.height = 0;
         this.img = new Image();
-        this.img.src = './assets/img/end.png';
+        this.img.src = './assets/img/win.png';
         this.img.isReady = false;
         this.img.onload = () => {
             this.img.isReady = true;
-        }
-        this.sounds = {
-            end: new Audio('./assets/sound/end.mp3')
         }
     }
 
@@ -28,10 +25,5 @@ class Gameover {
                 this.img.height
             );
         }
-
-        this.sounds.end.currentTime = 0;
-        this.sounds.end.play();
-         
     }
-
 }

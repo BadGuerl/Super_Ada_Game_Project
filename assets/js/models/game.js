@@ -11,6 +11,8 @@ class Game {
 
         this.fps = 1000 / 60;
         this.drawIntervalId = undefined;
+        this.createEnemyInterval = undefined;
+        this.winGameInterval = undefined;
 
         this.background = new Background(this.ctx);
         this.ada = new Ada(this.ctx, 15, 550);
@@ -26,15 +28,25 @@ class Game {
         this.points = 3;
         this.defendPoints = 0;
         //this.weapons = this.enemies.map(enemy => enemy.weapon);
+        this.gameover = new Gameover(this.ctx, 0, 0);
+        this.wingame = new Wingame(this.ctx, 0, 0);
+        this.gameEnded = false;
+        this.sounds = {
+            race: new Audio('./assets/sound/race.mp3'),
+            //intro: new Audio('./assets/sound/intro.mp3')
+        }
+        
     }
 
 
     start() {
         this.intro.style.display = "none";
         this.canvas.style.display = "block";
+        // this.sounds.intro.currentTime = 0;
+        // this.sounds.intro.play();
+
         if (!this.drawIntervalId) {
-            
-            setInterval(() => {
+            this.createEnemyInterval=setInterval(() => {
                 let enemyId = Math.floor(Math.random() * 10) + 1;
                 // let enemyY = Math.floor(Math.random() * this.maxY) + this.minY;
                 let enemyY = Math.floor(Math.random() * (this.maxY - this.minY + 1)) + this.minY;
@@ -51,18 +63,22 @@ class Game {
                 this.checkCollisions();
             }, this.fps);
             
+            this.sounds.race.currentTime = 0;
+            this.sounds.race.play();
         }
     }
 
     onKeyEvent(event) {
-        this.ada.onKeyEvent(event);
-        this.background.onKeyEvent(event);
-        const status = event.type === 'keydown';
-        switch (event.keyCode) {
-            case KEY_START:
-                this.start();
-                break;
+        if(!this.gameEnded){
+            this.ada.onKeyEvent(event);
+            this.background.onKeyEvent(event);
         }
+        // const status = event.type === 'keydown';
+        // switch (event.keyCode) {
+        //     case KEY_START:
+        //         this.start();
+        //         break;
+        // }
     }
 
     clear() {
@@ -70,10 +86,10 @@ class Game {
         this.ada.clear();
     }
 
-    stop() {
-        clearInterval(this.drawIntervalId);
-        this.drawIntervalId = undefined;
-    }
+    // stop() {
+    //     clearInterval(this.drawIntervalId);
+    //     this.drawIntervalId = undefined;
+    // }
 
     startGame() {
         this.score = 0;
@@ -89,12 +105,18 @@ class Game {
         //this.weapons.forEach(weapon => weapon.draw());
         this.enemies.map(enemy => enemy.draw());
         this.setScore(this.points);
+
         if (this.points <= 0) {
-            this.endGame();
+            this.endGame(true);
         }
         this.setScoreDefend(this.defendPoints);
+
+        if(this.defendPoints >= 4) {
+            this.endGame(false);
+        }
         this.heart.draw();
         this.shield.draw();
+        
     }
 
     setScore(score) {
@@ -136,7 +158,34 @@ class Game {
         this.weapons = restOfWeapons;
     }
 
-    endGame() {
+    endGame(lost) {
+        this.gameEnded = true;
         clearInterval(this.drawIntervalId);
+        clearInterval(this.createEnemyInterval);
+        this.sounds.race.pause();
+        if(lost){
+            this.gameover.draw();
+        } else {
+            //setInterval(() => {
+            
+            //}, this.fps);
+            this.winGameInterval = setInterval(() => {
+                this.clear();
+                this.background.draw();
+                this.ada.animateWin();
+                this.ada.draw();
+                this.setScore(this.points);
+                this.setScoreDefend(this.defendPoints);
+                this.ada.y -= SPEED;
+                this.heart.draw();
+                this.shield.draw();
+                if(this.ada.y <= 0){
+                    clearInterval(this.winGameInterval);
+                    this.wingame.x = (this.ada.x + this.ada.width) - (this.wingame.img.width/2);
+                    this.wingame.draw();
+                }
+            }, this.fps);
+            
+        }
     }
 }
