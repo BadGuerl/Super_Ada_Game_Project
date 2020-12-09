@@ -10,7 +10,7 @@ class Background {
         this.vx = -3;
 
         this.img = new Image();
-        this.img.src = './assets/img/city.png';
+        this.img.src = './assets/img/City.png';
         this.img.isReady = false;
         this.img.onload = () => {
             this.img.isReady = true;
