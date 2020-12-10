@@ -20,13 +20,12 @@ class Weapon {
             this.width = this.sprite.frameWidth;
             this.height = this.sprite.frameHeight;
         };
+
         this.movements = {
             left: false
         };
-        // this.weapons.map(weapon => weapon.draw());
+
         this.drawCount = 0;
-        // this.checkCollisions();
-        // this.clearWeapon = false;
     }
 
     draw() {

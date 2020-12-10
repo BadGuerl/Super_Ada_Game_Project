@@ -53,17 +53,13 @@ class Enemy {
                 this.height
             )
             if (this.weapon != false && this.comment != false) {
-                // if (!this.weapon.clearWeapon) {
-                    this.weapon.draw();
-                // }
-
+                
+                this.weapon.draw();
                 this.comment.draw();
             }
-            
-            // this.weapons.map(weapon => weapon.draw());
+
             this.drawCount++;
             this.animate();
-            // this.checkCollisions();
         }
     }
 

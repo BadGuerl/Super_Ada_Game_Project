@@ -24,16 +24,16 @@ class Game {
        
         this.shield = new Shield(this.ctx, 1240, 15);
         this.heart = new Heart(this.ctx, 25, 15);
-        // this.comment = new Comment();
+        
         this.points = 3;
         this.defendPoints = 0;
-        //this.weapons = this.enemies.map(enemy => enemy.weapon);
+        
         this.gameover = new Gameover(this.ctx, 0, 0);
         this.wingame = new Wingame(this.ctx, 0, 0);
         this.gameEnded = false;
         this.sounds = {
             race: new Audio('./assets/sound/race.mp3'),
-            //intro: new Audio('./assets/sound/intro.mp3')
+        
         }
         
     }
@@ -42,16 +42,13 @@ class Game {
     start() {
         this.intro.style.display = "none";
         this.canvas.style.display = "block";
-        // this.sounds.intro.currentTime = 0;
-        // this.sounds.intro.play();
-
+        
         if (!this.drawIntervalId) {
             this.createEnemyInterval=setInterval(() => {
+
                 let enemyId = Math.floor(Math.random() * 10) + 1;
-                // let enemyY = Math.floor(Math.random() * this.maxY) + this.minY;
                 let enemyY = Math.floor(Math.random() * (this.maxY - this.minY + 1)) + this.minY;
-                // enemyY = (enemyY > this.maxY)? this.maxY : enemyY;
-                // console.log(enemyY," ", this.maxY);
+                
                 this.enemies.push(new Enemy(this.ctx, this.canvas.width -50, enemyY, 'enemy' + enemyId));
                 this.weapons = this.enemies.map(enemy=>enemy.weapon).filter(weapon => weapon!=false);
             }, 3000);
@@ -69,16 +66,11 @@ class Game {
     }
 
     onKeyEvent(event) {
+
         if(!this.gameEnded){
             this.ada.onKeyEvent(event);
             this.background.onKeyEvent(event);
         }
-        // const status = event.type === 'keydown';
-        // switch (event.keyCode) {
-        //     case KEY_START:
-        //         this.start();
-        //         break;
-        // }
     }
 
     clear() {
@@ -86,14 +78,8 @@ class Game {
         this.ada.clear();
     }
 
-    // stop() {
-    //     clearInterval(this.drawIntervalId);
-    //     this.drawIntervalId = undefined;
-    // }
-
     startGame() {
         this.score = 0;
-        //this.weapons = [];
         this.ada.x = 0;
         this.ada.y = 0;
         this.start();
@@ -102,7 +88,6 @@ class Game {
     draw() {
         this.background.draw();
         this.ada.draw();
-        //this.weapons.forEach(weapon => weapon.draw());
         this.enemies.map(enemy => enemy.draw());
         this.setScore(this.points);
 
@@ -132,8 +117,8 @@ class Game {
     }
 
     move() {
+
         if (this.ada.x >= this.ada.maxX) {
-            //this.weapons.forEach(weapon => weapon.move());
             this.background.move();
         }
         this.ada.move();
@@ -150,11 +135,7 @@ class Game {
                 this.points -= newPoints;
                 
             }
-        // Array(newPoints).fill().forEach(() => {
-        //      this.sounds.weapon.currentTime = 0;
-        //      this.sounds.weapon.play();
-        //  })
-            // console.log(restOfWeapons);
+
         this.weapons = restOfWeapons;
     }
 
@@ -166,9 +147,7 @@ class Game {
         if(lost){
             this.gameover.draw();
         } else {
-            //setInterval(() => {
             
-            //}, this.fps);
             this.winGameInterval = setInterval(() => {
                 this.clear();
                 this.background.draw();

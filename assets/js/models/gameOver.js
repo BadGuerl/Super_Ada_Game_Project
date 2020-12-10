@@ -31,7 +31,5 @@ class Gameover {
 
         this.sounds.end.currentTime = 0;
         this.sounds.end.play();
-         
     }
-
 }

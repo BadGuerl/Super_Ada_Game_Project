@@ -146,9 +146,8 @@ class Ada {
     }
 
     animateWin() {
-        //if(this.defendPoints >= 10) {
+    
             this.animateSprite(5, 0, 0, 0);
-        //}
     }
     
     resetAnimation() {
@@ -177,17 +176,12 @@ class Ada {
     }
 
     collidesWidth(element) {
-        // return this.x < element.x + element.width &&
-        //     this.x + this.width > element.x &&
-        //     this.y + 50 < element.y + element.height &&
-        //     this.y + this.height - 50 > element.y;
-            // this.animate.movements === !this.movements.defending;
      
         if (this.x < element.x + element.width &&
             this.x + this.width > element.x &&
             this.y + 50 < element.y + element.height &&
             this.y + this.height - 50 > element.y) {
-            // element.clearWeapon = true;
+
             element.sprite.src = "";
             return true;
         } else {
