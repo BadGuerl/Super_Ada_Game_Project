@@ -33,7 +33,7 @@ class Game {
         this.gameEnded = false;
         this.sounds = {
             race: new Audio('./assets/sound/race.mp3'),
-        
+            win: new Audio('./assets/sound/win.mp3'),
         }
         
     }
@@ -133,7 +133,6 @@ class Game {
                 this.defendPoints += newPoints;
             } else {
                 this.points -= newPoints;
-                
             }
 
         this.weapons = restOfWeapons;
@@ -160,8 +159,10 @@ class Game {
                 this.shield.draw();
                 if(this.ada.y <= 0){
                     clearInterval(this.winGameInterval);
-                    this.wingame.x = (this.ada.x + this.ada.width) - (this.wingame.img.width/2);
+                    this.wingame.x = (this.ada.x + this.ada.width) - (this.wingame.img.width / 1.9);
                     this.wingame.draw();
+                    this.sounds.win.currentTime = 0;
+                    this.sounds.win.play();              
                 }
             }, this.fps);
             
