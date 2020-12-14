@@ -96,7 +96,7 @@ class Game {
         }
         this.setScoreDefend(this.defendPoints);
 
-        if(this.defendPoints >= 4) {
+        if(this.defendPoints >= 10) {
             this.endGame(false);
         }
         this.heart.draw();
