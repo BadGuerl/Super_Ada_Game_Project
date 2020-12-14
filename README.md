@@ -6,7 +6,7 @@ My first project with javascript, at ironhack technology school
 https://badguerl.github.io/Super_Ada_Game_Project/
 
 ![Game image]
-<img src="../assets/img/previsualizacion.png">
+<img src="https://github.com/BadGuerl/Super_Ada_Game_Project/blob/master/assets/img/previsualizacion.png">
 
 English below!
 
