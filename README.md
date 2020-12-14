@@ -8,7 +8,7 @@ https://badguerl.github.io/Super_Ada_Game_Project/
 ![Game image]
 <img src="https://github.com/BadGuerl/Super_Ada_Game_Project/blob/master/assets/img/previsualizacion.png">
 
-**English below!
+English below!
 
 <Hola, ¿que tal?
 
@@ -17,6 +17,7 @@ Os presento mi primer proyecto en Ironhack. Se trata de un juego cargado de simb
 Está programado en javascript, con el método Canvas, y en el que pongo a prueba mis, aún escasos, conocimientos de programación basada en objetos (OOP).
 
 Espero que os guste!>
+
                  >>---------------------------------------------------------<<
 
 <Hello, how are you?
