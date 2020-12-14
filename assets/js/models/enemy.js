@@ -1,18 +1,17 @@
 class Enemy {
 
-    constructor(ctx, x, y) {
+    constructor(ctx, x, y, name) {
         this.ctx = ctx;
         this.x = x;
         this.y = y;
 
         this.sprite = new Image();
-        this.sprite.src = './assets/img/enemy1.png';
+        this.sprite.src = `./assets/img/${name}.png`;
         this.sprite.isReady = false;
         this.sprite.horizontalFrameIndex = 0;
         this.sprite.verticalFrameIndex = 0;
         this.sprite.horizontalFrames = 4;
         this.sprite.verticalFrames = 1;
-
 
         this.sprite.onload = () => {
             this.sprite.isReady = true;
@@ -25,11 +24,24 @@ class Enemy {
             left: false
         };
         this.drawCount = 0;
+        this.weapon = false;
+        this.comment = false;
+        setTimeout(() => {
+            this.weapon = new Weapon(this.ctx, this.x, this.y + 50);
+            this.comment = new Comment(this.ctx, this.x, this.y - 80);
+            this.sounds.cuchillo.currentTime = 0;
+            this.sounds.cuchillo.play();
+        }, 500);
+
+        this.sounds = {
+            cuchillo: new Audio('./assets/sound/cuchillo.mp3')
+        }
     }
 
     draw() {
         if (this.sprite.isReady) {
             this.ctx.drawImage(
+
                 this.sprite,
                 this.sprite.horizontalFrameIndex * this.sprite.frameWidth,
                 this.sprite.verticalFrameIndex * this.sprite.frameHeight,
@@ -40,6 +52,12 @@ class Enemy {
                 this.width,
                 this.height
             )
+            if (this.weapon != false && this.comment != false) {
+                
+                this.weapon.draw();
+                this.comment.draw();
+            }
+
             this.drawCount++;
             this.animate();
         }

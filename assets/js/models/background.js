@@ -10,7 +10,7 @@ class Background {
         this.vx = -3;
 
         this.img = new Image();
-        this.img.src = './assets/img/city.png';
+        this.img.src = './assets/img/City.png';
         this.img.isReady = false;
         this.img.onload = () => {
             this.img.isReady = true;
@@ -20,15 +20,6 @@ class Background {
             left: false,
             up: false,
             down: false
-        }
-
-        this.counterImg = new Image();
-        this.counterImg.src = 'assets/img/weapon.png';
-        this.counterImg.isReady = false;
-        this.counterImg.height = 64;
-        this.counterImg.onload = () => {
-            this.counterImg.isReady = true;
-            this.counterImg.width = this.width;
         }
     }
 
@@ -64,19 +55,12 @@ class Background {
                 this.height
             )
             this.ctx.drawImage(
-                    this.img,
-                    this.x + this.width,
-                    this.y,
-                    this.width,
-                    this.height
-                )
-                // this.ctx.drawImage(
-                //     this.counterImg,
-                //     this.x + this.counterImg.width,
-                //     this.y,
-                //     this.counterImg.width,
-                //     this.counterImg.height
-                // )
+                this.img,
+                this.x + this.width,
+                this.y,
+                this.width,
+                this.height
+            )
         }
     }
 

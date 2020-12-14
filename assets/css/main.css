@@ -20,12 +20,7 @@ canvas {
 }
 
 #startGame {
-    /* width: 1366px; */
     height: 768px;
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #000; */
 }
 
 .game-container {

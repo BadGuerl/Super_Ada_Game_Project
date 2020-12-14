@@ -3,7 +3,7 @@ class Ada {
     constructor(ctx, x, y) {
         this.ctx = ctx;
         this.x = x;
-        this.maxX = this.ctx.canvas.width / 2;
+        this.maxX = this.ctx.canvas.width / 4;
         this.minX = 0;
         this.vx = 0;
 
@@ -39,8 +39,11 @@ class Ada {
             down: false,
             defending: false
         }
-
         this.drawCount = 0;
+
+        this.sounds = {
+            defend: new Audio('./assets/sound/yah.mp3')
+        }
     }
 
     isReady() {
@@ -64,10 +67,14 @@ class Ada {
                 break;
             case KEY_DEFENDING:
                 this.movements.defending = status;
+                if(status){
+                    this.sounds.defend.currentTime = 0;
+                    this.sounds.defend.play();
+                } else {
+                    this.sounds.defend.pause();
+                }
+                
                 break;
-                /*case KEY_START:
-                    this.game.start = status;
-                    break;*/
         }
     }
 
@@ -98,6 +105,8 @@ class Ada {
             this.vy = -SPEED;
         } else if (this.movements.down) {
             this.vy = SPEED;
+        } else if (this.defendPoints >= 10) {
+            this.vy = -SPEED;
         } else {
             this.vx = 0;
             this.vy = 0;
@@ -136,10 +145,15 @@ class Ada {
         }
     }
 
+    animateWin() {
+    
+            this.animateSprite(5, 0, 0, 0);
+    }
+    
     resetAnimation() {
         this.sprite.verticalFrameIndex = 0;
         this.sprite.horizontalFrameIndex = 0;
-    }
+        }
 
     animateSprite(initialVerticalIndex, initialHorizontalIndex, maxHorizontalIndex, frequency) {
         if (this.sprite.verticalFrameIndex != initialVerticalIndex) {
@@ -151,9 +165,28 @@ class Ada {
         }
     }
 
+    animateSpriteWin(initialVerticalIndex, initialHorizontalIndex, maxHorizontalIndex, frequency) {
+        if (this.sprite.verticalFrameIndex != initialVerticalIndex) {
+            this.sprite.verticalFrameIndex = initialVerticalIndex;
+            this.sprite.horizontalFrameIndex = initialHorizontalIndex;
+        } else if (this.sprite.drawCount % frequency === 0) {
+            this.sprite.horizontalFrameIndex = (this.sprite.horizontalFrameIndex + 1) % maxHorizontalIndex;
+            this.sprite.drawCount = 0;
+        }
+    }
+
     collidesWidth(element) {
-        return this.x < element.x + element.width &&
-            this.x + this.width > element.x;
+     
+        if (this.x < element.x + element.width &&
+            this.x + this.width > element.x &&
+            this.y + 50 < element.y + element.height &&
+            this.y + this.height - 50 > element.y) {
+
+            element.sprite.src = "";
+            return true;
+        } else {
+            return false;
+        }
     }
 
     clear() {

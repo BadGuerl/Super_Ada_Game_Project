@@ -20,9 +20,11 @@ class Weapon {
             this.width = this.sprite.frameWidth;
             this.height = this.sprite.frameHeight;
         };
+
         this.movements = {
             left: false
         };
+
         this.drawCount = 0;
     }
 
@@ -46,7 +48,7 @@ class Weapon {
 
     move() {
         if (this.x > 0 - this.width) {
-            this.x -= SPEED * 1.5;
+            this.x -= SPEED * 1.3;
         }
     }
 
