@@ -46,7 +46,7 @@ class Game {
         if (!this.drawIntervalId) {
             this.createEnemyInterval=setInterval(() => {
 
-                let enemyId = Math.floor(Math.random() * 10) + 1;
+                let enemyId = Math.floor(Math.random() * 20) + 1;
                 let enemyY = Math.floor(Math.random() * (this.maxY - this.minY + 1)) + this.minY;
                 
                 this.enemies.push(new Enemy(this.ctx, this.canvas.width -50, enemyY, 'enemy' + enemyId));
